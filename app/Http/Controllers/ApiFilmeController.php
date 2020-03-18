@@ -30,7 +30,7 @@ class ApiFilmeController extends Controller
         $novoFilme->release_date = "$request->ano-$request->mes-$request->dia 00:00:00";
         $novoFilme->fill($data);
         $novoFilme->save();
-        
+        // $novoFilme = "FILME GRAVADO COM SUCESSO!";
         return $novoFilme;
     }
 
@@ -42,19 +42,30 @@ class ApiFilmeController extends Controller
      */
     public function show(Request $request, $id)
     {
-        
+        $movie = Movie::findOrFail($id);
+        return $movie;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Movie  $movie
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Movie $movie
+     * @return Array
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, $id)
     {
-        //
+        //Trazendo os dados do banco.
+        $movie = Movie::find($id);
+
+        //Preencho a model com os valores do request;
+        $movie->fill($request->all());
+
+        //Persistindo o novo model no banco.
+        $movie->save();
+
+        //Retorna para o navegador o movie em formato JSON
+        return $movie;
     }
 
     /**
@@ -63,8 +74,14 @@ class ApiFilmeController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy($id)
     {
-        //
+        // Busquei o registro no banco.
+        $movie = Movie::findOrFail($id);
+
+        //Removi o registro no banco
+        $movie->delete();
+
+        //O destroy não tem retorno.x
     }
 }

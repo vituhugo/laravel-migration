@@ -24,25 +24,26 @@ class FilmeRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'titulo' => 'required',
-            // 'classificacao' => 'required|numeric|max:10',
-            // 'duracao' => 'required|numeric',
-            // 'premios' => 'required|numeric',
-            // 'dia' => 'required',
-            // 'mes' => 'required',
-            // 'ano' => 'required'
+            'title' => 'required',
+            'rating' => 'required|numeric|max:10',
+            'length' => 'required|numeric',
+            'awards' => 'required|numeric',
+            'genre_id' => 'required',
+            'dia' => 'required',
+            'mes' => 'required',
+            'ano' => 'required'
         ];
     }
 
     public function messages() {
         return [
-            'titulo.required' => 'O campo titulo é obrigatório.',
-            'titulo.unique' => 'Essa parada aí já existe',
-            'classificacao.required' => 'Tem que por, carai',
-            'classificacao.numeric' => 'Tem que por UM NUMERO, carai',
-            'classificacao.max' => 'Tem que por UM NUMERO ATÉ 10, ESPERTONA',
-            'premios.required' => 'Tem que por, carai!',
-            'duracao.required' => 'Tem que por, carai!',
+            'title.required' => 'O campo titulo é obrigatório.',
+            'title.unique' => 'Essa parada aí já existe',
+            'rating.required' => 'Tem que por, carai',
+            'rating.numeric' => 'Tem que por UM NUMERO, carai',
+            'rating.max' => 'Tem que por UM NUMERO ATÉ 10, ESPERTONA',
+            'length.required' => 'Tem que por, carai!',
+            'length.required' => 'Tem que por, carai!',
             'dia.required' => 'Tem que por DIA, carai!',
             'mes.required' => 'Tem que por mes, carai!',
             'ano.required' => 'Tem que por ano, carai!',
